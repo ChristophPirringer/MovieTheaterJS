@@ -8,3 +8,10 @@ describe('Movie', function() {
     expect(testMovie2.showTimes).to.eql(["5:00"]);
   })
 });
+
+describe('Customer', function() {
+  it('returns the age of the customer', function() {
+    var testCustomer = new Customer(18);
+    expect(testCustomer.age).to.equal(18);
+  })
+});

@@ -1,125 +1,46 @@
-function Movie(title, showTimes) {
-  this.title = title;
+function Show(movieTitle, showTimes, age) {
   this.showTimes = [showTimes];
+  this.movieTitle = movieTitle;
+  this.age = age;
+  this.price = 5;
 }
 
-Movie.prototype.title = function() {
-  return this.title;
-}
+Show.prototype.movieTitle = function() {
+  return this.movieTitle;
+};
 
-Movie.prototype.showTimes = function() {
+Show.prototype.showTimes = function() {
   return this.showTimes;
-}
+};
 
-// function Customer(age) {
-//
-// }
-
-
+Show.prototype.age = function() {
+  return this.age;
+};
 
 
 
 
+Show.prototype.calculatePrice = function() {
+  if (this.movieTitle === "Terminator") {
+    this.price += 5;
+  }
+  if (this.showTimes === ["10pm"]) {
+    this.price += 2;
+  }
+  if (this.age === "0-4") {
+    this.price += 1;
+  }
+  return this.price;
+};
+$(document).ready(function() {
+  $("form#calculate").submit(function(event) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function Contact(firstName,lastName){
-//   this.firstName = firstName
-//   this.lastName = lastName
-//   this.addresses = []
-// }
-//
-// Contact.prototype.fullName = function() {
-//   return this.firstName + " " + this.lastName;
-// }
-//
-// function Address(street, city, state) {
-//   this.street = street;
-//   this.city = city;
-//   this.state = state;
-// }
-//
-// Address.prototype.fullAddress = function() {
-//   return this.street + ", " + this.city + ", " + this.state;
-// }
-//
-// function resetFields(){
-//   $("input#new-first-name").val("");
-//   $("input#new-last-name").val("");
-//   $("input.new-street").val("");
-//   $("input.new-city").val("");
-//   $("input.new-state").val("");
-//   $("div.new-address").not(':first').remove();
-// }
-//
-// $(document).ready(function() {
-//   $("#add-address").click(function() {
-//     $("#new-addresses").append('<div class="new-address">' +
-//                                  '<div class="form-group">' +
-//                                    '<label for="new-street">Street</label>' +
-//                                    '<input type="text" class="form-control new-street">' +
-//                                  '</div>' +
-//                                  '<div class="form-group">' +
-//                                    '<label for="new-city">City</label>' +
-//                                    '<input type="text" class="form-control new-city">' +
-//                                  '</div>' +
-//                                  '<div class="form-group">' +
-//                                    '<label for="new-state">State</label>' +
-//                                    '<input type="text" class="form-control new-state">' +
-//                                  '</div>' +
-//                                '</div>');
-// });
-//
-// $("form#new-contact").submit(function(event) {
-//     event.preventDefault();
-//
-//     var inputtedFirstName = $("input#new-first-name").val();
-//     var inputtedLastName = $("input#new-last-name").val();
-//
-//     var newContact = new Contact(inputtedFirstName, inputtedLastName);
-//
-//     $(".new-address").each(function() {
-//       var inputtedStreet = $(this).find("input.new-street").val();
-//       var inputtedCity = $(this).find("input.new-city").val();
-//       var inputtedState = $(this).find("input.new-state").val();
-//
-//       var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState)
-//       newContact.addresses.push(newAddress);
-//     });
-//
-//
-//     $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
-//
-//     $(".contact").last().click(function() {
-//       $("#show-contact").show();
-//
-//       $("#show-contact h2").text(newContact.fullName());
-//       $(".first-name").text(newContact.firstName);
-//       $(".last-name").text(newContact.lastName);
-//
-//       $("ul#addresses").text("");
-//
-//       newContact.addresses.forEach(function(address) {
-//         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
-//       });
-//     });
-//
-//     resetFields();
-//   });
-// });
+    event.preventDefault();
+    var movieTitle = $('input[name="movie_title"]:checked').val();
+    var showTimes = $('input[name="show_time"]:checked').val();
+    var customer_age = $('input[name="customer_age"]:checked').val();
+    var newShow = new Show(movieTitle, showTimes, customer_age);
+    
+    $("#ticket").append("<li>" + "The movie, " + newShow.movieTitle + " playing at " + newShow.showTimes.join() + " " + "costs " + "$" + newShow.calculatePrice() + " because you are in the age bracket " + newShow.age + " years of age." + "</li>");
+  });
+});
