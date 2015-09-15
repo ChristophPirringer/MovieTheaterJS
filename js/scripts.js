@@ -1,13 +1,19 @@
 function Movie(title, showTimes) {
   this.title = title;
-  this.showTimes = [];
+  this.showTimes = [showTimes];
 }
 
 Movie.prototype.title = function() {
   return this.title;
 }
 
-// function Customer(age)
+Movie.prototype.showTimes = function() {
+  return this.showTimes;
+}
+
+// function Customer(age) {
+//
+// }
 
 
 
