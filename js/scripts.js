@@ -33,6 +33,12 @@ Show.prototype.calculatePrice = function() {
   return this.price;
 };
 $(document).ready(function() {
+
+  $("form#add_movie").submit(function(event) {
+    var newMovieTitle = $('input#new_title').val();
+    $("#movie_title_buttons").append('<input type="radio" name="movie_title" value="' + newMovieTitle + '">' + newMovieTitle + '<br>');
+  });
+
   $("form#calculate").submit(function(event) {
 
     event.preventDefault();
@@ -40,7 +46,12 @@ $(document).ready(function() {
     var showTimes = $('input[name="show_time"]:checked').val();
     var customer_age = $('input[name="customer_age"]:checked').val();
     var newShow = new Show(movieTitle, showTimes, customer_age);
-    
-    $("#ticket").append("<li>" + "The movie, " + newShow.movieTitle + " playing at " + newShow.showTimes.join() + " " + "costs " + "$" + newShow.calculatePrice() + " because you are in the age bracket " + newShow.age + " years of age." + "</li>");
+
+    $("#ticket").append("<li><span class='show'>" + "The movie, " + newShow.movieTitle + " playing at " + newShow.showTimes.join() + " " + "costs " + "$" + newShow.calculatePrice() + " because you are in the age bracket " + newShow.age + " years of age." + "</span></li>");
+
+    $(".show").last().click(function() {
+      $(this).remove();
+    });
   });
+
 });

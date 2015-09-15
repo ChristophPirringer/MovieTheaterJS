@@ -14,24 +14,31 @@
       <div class="row container">
         <div class="col-md-6">
           <h2>Choose a title</h2>
+          <form id="add_movie" onsubmit="return false;">
+            <label for="new_title">Enter title: </label>
+            <input type="text" name="new_title" id="new_title">
+            <button type="submit" class="btn btn-submit">Enter</button>
+          </form>
+
+
           <form id="calculate">
-            <fieldset>
-              <label for="movie_title"><h4>Movies:</h4></label>
+
+              <label for="movie_title" id="movie_title_buttons"><h4>Movies:</h4></label>
               <input type="radio" name="movie_title" value="Terminator" checked>Terminator<br>
               <input type="radio" name="movie_title" value="Bambi">Bambi
-            </fieldset>
+
             <br>
-            <fieldset>
+
               <label for="show_time"><h4>Show times:</h4></label>
               <input type="radio" name="show_time" value="10am" checked>10am<br>
               <input type="radio" name="show_time" value="10pm">10pm
-            </fieldset>
+
             <br>
-            <fieldset>
+
               <label for="customer_age"><h4>Age of customer:</h4></label>
               <input type="radio" name="customer_age" value="0-4" checked>0-4<br>
               <input type="radio" name="customer_age" value="4-100">4-100
-            </fieldset>
+
             <br>
             <button type="submit" class="btn" id="calculate">Calculate Ticket Price</button>
           </form>
